@@ -12,7 +12,7 @@ class AddTodo extends Component {
   };
 
   handleSubmit = (e) => {
-    // e.preventDefault();
+    e.preventDefault();
     this.props.addTodo(this.state.input);
     this.setState({ input: ' ' });
   };
