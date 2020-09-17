@@ -4,17 +4,19 @@ import Todo from './Todo';
 
 const TodoList = (props) => (
   <ul>
-    {props.todos.length
+    {props.todos && props.todos.length
       ? props.todos.map((todo, index) => {
-          return <Todo key={index} todo={todo} />;
+          return <Todo key={todo.id} todo={todo.content} />;
         })
       : 'No todos'}
   </ul>
 );
 
 const mapStateToProps = (state) => {
-  return {
-    todos: state.todos,
-  };
+  const { ids, todosByIds } = state || {};
+  const todos = state.ids.length
+    ? ids.map((id) => (todosByIds ? { ...todosByIds[id], id } : null))
+    : null;
+  return { todos };
 };
 export default connect(mapStateToProps)(TodoList);

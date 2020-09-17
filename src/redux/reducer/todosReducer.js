@@ -1,15 +1,20 @@
 import { ADD_TODO } from '../actions';
 
 const initialState = {
-  todos: ['play Football', 'Learn Code'],
+  ids: [],
+  todosByIds: {},
 };
 
 const todosReducer = (state = initialState, action) => {
   switch (action.type) {
-    case ADD_TODO:
+    case ADD_TODO: {
+      const { id, content } = action.payload;
       return {
-        todos: [...state.todos, action.content],
+        ...state,
+        ids: [...state.ids, id],
+        todosByIds: { ...state.todosByIds, [id]: { content } },
       };
+    }
     default:
       return state;
   }
