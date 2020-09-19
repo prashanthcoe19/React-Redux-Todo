@@ -1,8 +1,7 @@
-import { ADD_TODO } from '../actions';
+import { ADD_TODO, DELETE_TODO } from '../actions';
 
 const initialState = {
-  ids: [],
-  todosByIds: {},
+  todosByIds: [],
 };
 
 const todosReducer = (state = initialState, action) => {
@@ -11,8 +10,20 @@ const todosReducer = (state = initialState, action) => {
       const { id, content } = action.payload;
       return {
         ...state,
-        ids: [...state.ids, id],
-        todosByIds: { ...state.todosByIds, [id]: { content } },
+        todosByIds: [
+          ...state.todosByIds,
+          {
+            content: content,
+            id: id,
+          },
+        ],
+      };
+    }
+    case DELETE_TODO: {
+      return {
+        todosByIds: state.todosByIds.filter(
+          (todo) => todo.id !== action.payload
+        ),
       };
     }
     default:

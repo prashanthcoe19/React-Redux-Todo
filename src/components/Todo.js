@@ -1,11 +1,16 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { deleteTodo } from '../redux/actions';
 
-const Todo = (props) => {
+const Todo = ({ todo, id, dispatch }) => {
   return (
-    <div>
-      <p>{props.todo}</p>
-    </div>
+    <li style={{ listStyle: 'none' }}>
+      {todo}{' '}
+      <span>
+        <button onClick={() => dispatch(deleteTodo(id))}>delete Todo</button>
+      </span>
+    </li>
   );
 };
 
-export default Todo;
+export default connect()(Todo);
