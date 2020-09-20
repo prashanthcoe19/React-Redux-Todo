@@ -15,6 +15,7 @@ const todosReducer = (state = initialState, action) => {
           {
             content: content,
             id: id,
+            completed: false,
           },
         ],
       };

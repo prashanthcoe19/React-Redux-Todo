@@ -6,9 +6,9 @@ const Todo = ({ todo, id, dispatch }) => {
   return (
     <li style={{ listStyle: 'none' }}>
       {todo}{' '}
-      <span>
-        <button onClick={() => dispatch(deleteTodo(id))}>delete Todo</button>
-      </span>
+      <button class='delete-button' onClick={() => dispatch(deleteTodo(id))}>
+        <i class='fa fa-close'></i>
+      </button>
     </li>
   );
 };
